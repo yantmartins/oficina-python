@@ -1,60 +1,36 @@
-# === Funções para salvar dados formatados nos arquivos ===
 
 def salvar_clientes():
-    # Abre o arquivo clientes.txt para escrita
     f = open("clientes.txt", "w")
-    # Percorre cada cliente na lista clientes
     for c in clientes:
-        # Separa os campos do cliente (cpf, nome, telefone)
         cpf, nome, tel = c.split(";")
-        # Formata a linha com rótulos para salvar no arquivo
         linha = f"CPF: {cpf}; Nome: {nome}; Tel: {tel}\n"
-        # Escreve a linha no arquivo
         f.write(linha)
-    # Fecha o arquivo após a escrita
     f.close()
 
 def salvar_veiculos():
-    # Abre o arquivo veiculos.txt para escrita
     f = open("veiculos.txt", "w")
-    # Percorre cada veículo na lista veiculos
     for v in veiculos:
-        # Separa os campos do veículo (placa, modelo, ano, cpf dono)
         placa, modelo, ano, cpf = v.split(";")
-        # Formata a linha com rótulos para salvar no arquivo
         linha = f"Placa: {placa}; Modelo: {modelo}; Ano: {ano}; CPF: {cpf}\n"
-        # Escreve a linha no arquivo
         f.write(linha)
-    # Fecha o arquivo após a escrita
     f.close()
 
 def salvar_os():
-    # Abre o arquivo os.txt para escrita
     f = open("os.txt", "w")
-    # Percorre cada ordem de serviço na lista ordens
     for o in ordens:
-        # Separa os campos da OS (num, descrição, valor, cpf, placa)
         num, desc, valor, cpf, placa = o.split(";")
-        # Formata a linha com rótulos para salvar no arquivo
         linha = f"OS: {num}; Descrição: {desc}; Valor: {valor}; CPF: {cpf}; Placa: {placa}\n"
-        # Escreve a linha no arquivo
         f.write(linha)
-    # Fecha o arquivo após a escrita
     f.close()
 
 # === Função para carregar dados do arquivo ===
 def carregar(arquivo):
     try:
-        # Abre o arquivo para leitura
         f = open(arquivo, "r")
-        # Lê todas as linhas e remove espaços em branco nas extremidades
         linhas = [linha.strip() for linha in f.readlines()]
-        # Fecha o arquivo
         f.close()
-        # Retorna a lista de linhas carregadas
         return linhas
     except:
-        # Se arquivo não existir ou erro, retorna lista vazia
         return []
 
 # === FUNÇÕES DE CLIENTE ===
@@ -67,7 +43,7 @@ def cadastrar_cliente():
     for c in clientes:
         if c.split(";")[0] == cpf:
             print("CPF já existe.")
-            return  # Sai da função se CPF duplicado
+            return  
     # Adiciona novo cliente na lista clientes no formato "cpf;nome;tel"
     clientes.append(f"{cpf};{nome};{tel}")
     # Salva a lista atualizada no arquivo clientes.txt
